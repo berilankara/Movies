@@ -26,14 +26,6 @@ public class MovieService : IMovieService
     public async Task<int> Insert(MovieInsertRequest request)
     {
         Movie entity = _mapper.Map<Movie>(request);
-
-        foreach (var genreId in request.GenreIds)
-        {
-            entity.MovieGenres.Add(new MovieGenre()
-            {
-                GenreId = genreId
-            });
-        }
         
         await _movieRepository.AddAsync(entity);
 
@@ -53,21 +45,10 @@ public class MovieService : IMovieService
 
         if (entity == null)
             throw new NotFoundException("Movie not found!");
+
+        var updatedEntity = _mapper.Map<MovieUpdateRequest, Movie>(request, entity);
         
-        entity.Name = request.Name;
-        entity.Description = request.Description;
-        entity.ReleaseDate = request.ReleaseDate;
-        entity.UpdatedDate = DateTime.UtcNow;
-        
-        foreach (var genreId in request.GenreIds)
-        {
-            entity.MovieGenres.Add(new MovieGenre()
-            {
-                GenreId = genreId
-            });
-        }
-        
-        _movieRepository.Update(entity);
+        _movieRepository.Update(updatedEntity);
 
         var result = await _unitOfWork.SaveChangesAsync();
 

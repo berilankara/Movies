@@ -16,12 +16,12 @@ public class MovieGenreTypeConfiguration : IEntityTypeConfiguration<MovieGenre>
 
         #region Property Configuration
         
+        builder.HasKey(x => new { x.MovieId, x.GenreId });
+
         #endregion
 
         #region Relation Configuration
-
-        builder.HasKey(x => new { x.MovieId, x.GenreId });
-
+        
         #endregion
     }
 }
