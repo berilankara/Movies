@@ -1,4 +1,4 @@
-namespace Movies.Application.Resources.Genres;
+namespace Movies.Application.Resources.MovieGenres;
 
 public class MovieGenreResponse
 {

@@ -1,7 +1,7 @@
-using Movies.Core.Repositories.Interfaces;
+using Movies.Data.Base.Repositories.Interfaces;
 using Movies.Domain.Entities;
 
-namespace Movies.Data.Repositories.MovieRepositories.Interfaces;
+namespace Movies.Data.Repositories.Movies.Interfaces;
 
 public interface IMovieRepository : IRepository<Movie>
 {

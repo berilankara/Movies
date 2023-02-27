@@ -1,10 +1,10 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Movies.Core.Repositories.Interfaces;
+using Movies.Data.Base.Repositories.Interfaces;
 using Movies.Data.Contexts;
 
-namespace Movies.Data.Repositories.Base;
+namespace Movies.Data.Base.Repositories;
 
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 {

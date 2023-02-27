@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Movies.Core.Repositories.Interfaces;
+namespace Movies.Data.Base.Repositories.Interfaces;
 
 public interface IRepository<TEntity> where TEntity : class
 {

@@ -1,97 +1,69 @@
 using Microsoft.AspNetCore.Mvc;
-using Movies.Application.Services.MovieServices.Interfaces;
-using Movies.Application.Services.MovieServices.Resources;
+using Movies.Application.Resources;
+using Movies.Application.Resources.Movies;
+using Movies.Application.Services.Movies.Interfaces;
+using Movies.Core.Http.Responses;
 
 namespace Movies.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class MovieController : Controller
+public class MoviesController : Controller
 {
-    private readonly IMovieService _movieService;
-    
-    public MovieController(IMovieService contactService)
+    private readonly IMovieService _moviesService;
+
+    public MoviesController(IMovieService contactService)
     {
-        _movieService = contactService;
+        _moviesService = contactService;
     }
 
-    [HttpGet("movies")]
+    [HttpGet]
     [ProducesResponseType(200, Type = typeof(List<MovieResponse>))]
+    [ProducesResponseType(500, Type = typeof(ErrorResponse))]
     public async Task<IActionResult> GetContacts()
     {
-        try
-        {
-            var result = await _movieService.GetAll();
-
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            throw new Exception(e.Message);
-        }
+        return Ok(await _moviesService.GetAll());
     }
 
-    [HttpGet("movies/{id}")]
+    [HttpGet("{id}")]
     [ProducesResponseType(200, Type = typeof(MovieResponse))]
+    [ProducesResponseType(404, Type = typeof(ErrorResponse))]
+    [ProducesResponseType(500, Type = typeof(ErrorResponse))]
     public async Task<IActionResult> GetById(int id)
     {
-        try
-        {
-            var result = await _movieService.GetById(id);
-
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            throw new Exception(e.Message);
-        }
+        return Ok(await _moviesService.GetById(id));
     }
 
-    [HttpPost("movies")]
+    [HttpPost]
     [ProducesResponseType(201, Type = typeof(int))]
+    [ProducesResponseType(400, Type = typeof(ErrorResponse))]
+    [ProducesResponseType(500, Type = typeof(ErrorResponse))]
     public async Task<IActionResult> Insert(MovieInsertRequest model)
     {
-        try
-        {
-            var result = await _movieService.Insert(model);
-
-            return Created("", result);
-        }
-        catch (Exception e)
-        {
-            throw new Exception(e.Message);
-        }
+        return Created("", await _moviesService.Insert(model));
     }
-    
-    [HttpPut("movies/{id}")]
+
+    [HttpPut("{id}")]
     [ProducesResponseType(204)]
-    public async Task<IActionResult> UpdateById(int id,MovieUpdateRequest model)
+    [ProducesResponseType(400, Type = typeof(ErrorResponse))]
+    [ProducesResponseType(404, Type = typeof(ErrorResponse))]
+    [ProducesResponseType(500, Type = typeof(ErrorResponse))]
+    public async Task<IActionResult> UpdateById(int id, MovieUpdateRequest model)
     {
-        try
-        {
-            await _movieService.UpdateById(id, model);
+        await _moviesService.UpdateById(id, model);
 
-            return NoContent();
-        }
-        catch (Exception e)
-        {
-            throw new Exception(e.Message);
-        }
+        return NoContent();
     }
-    
-    [HttpDelete("movies/{id}")]
+
+    [HttpDelete("{id}")]
     [ProducesResponseType(204)]
+    [ProducesResponseType(400, Type = typeof(ErrorResponse))]
+    [ProducesResponseType(404, Type = typeof(ErrorResponse))]
+    [ProducesResponseType(500, Type = typeof(ErrorResponse))]
     public async Task<IActionResult> Delete(int id)
     {
-        try
-        {
-            await _movieService.DeleteById(id);
+        await _moviesService.DeleteById(id);
 
-            return NoContent();
-        }
-        catch (Exception e)
-        {
-            throw new Exception(e.Message);
-        }
+        return NoContent();
     }
 }

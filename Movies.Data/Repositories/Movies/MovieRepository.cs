@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using Movies.Core.Repositories;
+using Movies.Data.Base.Repositories;
 using Movies.Data.Contexts;
-using Movies.Data.Repositories.MovieRepositories.Interfaces;
+using Movies.Data.Repositories.Movies.Interfaces;
 using Movies.Domain.Entities;
 
-namespace Movies.Data.Repositories.MovieRepositories;
+namespace Movies.Data.Repositories.Movies;
 
 public class MovieRepository : Repository<Movie>, IMovieRepository
 {
@@ -16,14 +16,16 @@ public class MovieRepository : Repository<Movie>, IMovieRepository
     {
         return await _dbSet
             .Where(x => x.Id == id)
-            .Include(x => x.Genres)
+            .Include(x => x.MovieGenres)
+            .ThenInclude(x => x.Genre)
             .FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<Movie>> GetAllMovies()
     {
         return await _dbSet
-            .Include(x => x.Genres)
+            .Include(x => x.MovieGenres)
+            .ThenInclude(x => x.Genre)       
             .ToListAsync();
     }
 }

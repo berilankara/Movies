@@ -1,6 +1,9 @@
-namespace Movies.Data.Repositories.Genre.Interfaces;
+using Movies.Data.Base.Repositories.Interfaces;
+using Movies.Domain.Entities;
 
-public interface IGenreRepository
+namespace Movies.Data.Repositories.Genres.Interfaces;
+
+public interface IGenreRepository : IRepository<Genre>
 {
     
 }

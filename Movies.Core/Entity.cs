@@ -1,7 +1,8 @@
 namespace Movies.Core;
 
-public class BaseEntity
+public class Entity
 {
     public int Id { get; set; }
-    public DateTime Id { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime? UpdatedDate { get; set; }
 }

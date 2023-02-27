@@ -1,25 +1,33 @@
-using Movies.Core.UnitOfWorks.Interfaces;
+using Microsoft.EntityFrameworkCore.Storage;
+using Movies.Data.Contexts;
+using Movies.Data.UnitOfWorks.Interfaces;
 
-namespace Movies.Core.UnitOfWorks;
+namespace Movies.Data.UnitOfWorks;
 
 public class UnitOfWork : IUnitOfWork
 {
     private readonly AppDbContext _context;
-    private readonly IServiceProvider _services;
 
-    public UnitOfWork(AppDbContext context, IServiceProvider services)
+    public UnitOfWork(AppDbContext context)
     {
         _context = context;
-        _services = services;
     }
 
+    // Sync save change method
     public int SaveChanges()
     {
         return _context.SaveChanges();
     }
 
+    // Async save change method
     public Task<int> SaveChangesAsync()
     {
         return _context.SaveChangesAsync();
+    }
+
+    // About begin transaction method
+    public IDbContextTransaction BeginTransaction()
+    {
+        return _context.Database.BeginTransaction();
     }
 }
