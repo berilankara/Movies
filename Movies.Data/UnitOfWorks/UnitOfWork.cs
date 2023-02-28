@@ -13,19 +13,28 @@ public class UnitOfWork : IUnitOfWork
         _context = context;
     }
 
-    // Sync save change method
+    /// <summary>
+    /// Sync save change method
+    /// </summary>
+    /// <returns></returns>
     public int SaveChanges()
     {
         return _context.SaveChanges();
     }
 
-    // Async save change method
+    /// <summary>
+    /// Async save change method
+    /// </summary>
+    /// <returns></returns>
     public Task<int> SaveChangesAsync()
     {
         return _context.SaveChangesAsync();
     }
 
-    // About begin transaction method
+    /// <summary>
+    /// About begin transaction method
+    /// </summary>
+    /// <returns></returns>
     public IDbContextTransaction BeginTransaction()
     {
         return _context.Database.BeginTransaction();

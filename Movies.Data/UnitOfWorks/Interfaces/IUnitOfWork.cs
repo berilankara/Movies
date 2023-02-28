@@ -4,12 +4,21 @@ namespace Movies.Data.UnitOfWorks.Interfaces;
 
 public interface IUnitOfWork
 {
-    // Sync save change method
+    /// <summary>
+    /// Sync save change method
+    /// </summary>
+    /// <returns></returns>
     int SaveChanges(); 
     
-    // Async save change method
+    /// <summary>
+    /// Async save change method
+    /// </summary>
+    /// <returns></returns>
     Task<int> SaveChangesAsync();
     
-    // About begin transaction method
+    /// <summary>
+    /// About begin transaction method
+    /// </summary>
+    /// <returns></returns>
     IDbContextTransaction BeginTransaction();
 }

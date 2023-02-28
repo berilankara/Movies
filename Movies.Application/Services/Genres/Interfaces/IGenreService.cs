@@ -4,6 +4,9 @@ namespace Movies.Application.Services.Genres.Interfaces;
 
 public interface IGenreService
 {
-    // Get genres with name and id
+    /// <summary>
+    /// Get genres with name and id
+    /// </summary>
+    /// <returns></returns>
     Task<List<GenreResponse>> GetGenres();
 }

@@ -1,22 +1,40 @@
-using Movies.Application.Resources;
 using Movies.Application.Resources.Movies;
 
 namespace Movies.Application.Services.Movies.Interfaces;
 
 public interface IMovieService
 {
-    // Insert movie
+    /// <summary>
+    /// Insert movie
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     Task<int> Insert(MovieInsertRequest request);
 
-    // Update movie by id
+    /// <summary>
+    /// Update movie by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="request"></param>
+    /// <returns></returns>
     Task UpdateById(int id, MovieUpdateRequest request);
 
-    // Delete movie by id
+    /// <summary>
+    /// Delete movie by id</summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     Task DeleteById(int id);
 
-    // Get movie by id
+    /// <summary>
+    /// Get movie by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     Task<MovieResponse> GetById(int id);
 
-    // Get movies
+    /// <summary>
+    /// Get movies
+    /// </summary>
+    /// <returns></returns>
     Task<List<MovieResponse>> GetAll();
 }

@@ -1,5 +1,3 @@
-using Movies.Core;
-
 namespace Movies.Domain.Entities;
 
 public class MovieGenre

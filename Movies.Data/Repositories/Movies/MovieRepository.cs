@@ -12,6 +12,11 @@ public class MovieRepository : Repository<Movie>, IMovieRepository
     {
     }
 
+    /// <summary>
+    /// Get movie with relationships by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public async Task<Movie?> GetWithDetailById(int id)
     {
         return await _dbSet
@@ -21,6 +26,10 @@ public class MovieRepository : Repository<Movie>, IMovieRepository
             .FirstOrDefaultAsync();
     }
 
+    /// <summary>
+    /// Get movies with relationships
+    /// </summary>
+    /// <returns></returns>
     public async Task<IEnumerable<Movie>> GetAllMovies()
     {
         return await _dbSet

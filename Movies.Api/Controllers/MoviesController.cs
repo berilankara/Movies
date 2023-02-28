@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Movies.Application.Resources;
 using Movies.Application.Resources.Movies;
 using Movies.Application.Services.Movies.Interfaces;
 using Movies.Core.Http.Responses;

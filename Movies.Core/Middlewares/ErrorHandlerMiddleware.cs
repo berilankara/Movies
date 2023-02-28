@@ -8,22 +8,17 @@ namespace Movies.Core.Middlewares;
 
 public class ErrorHandlerMiddleware : IMiddleware
 {
-    public ErrorHandlerMiddleware()
-    {
-        
-    }
-    
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
         try
-        {       
+        {
             await next(context);
         }
         catch (Exception exception)
         {
             var response = context.Response;
             ErrorResponse errorResponse;
-            
+
             response.StatusCode = StatusCodes.Status400BadRequest;
             response.ContentType = "application/json";
 

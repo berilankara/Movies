@@ -5,5 +5,4 @@ namespace Movies.Data.Repositories.Genres.Interfaces;
 
 public interface IGenreRepository : IRepository<Genre>
 {
-    
 }

@@ -1,5 +1,4 @@
 using AutoMapper;
-using Movies.Application.Resources;
 using Movies.Application.Resources.Movies;
 using Movies.Application.Services.Movies.Interfaces;
 using Movies.Core.Exceptions;
@@ -22,7 +21,11 @@ public class MovieService : IMovieService
         _mapper = mapper;
     }
 
+    /// <summary>
     /// Insert movie
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     public async Task<int> Insert(MovieInsertRequest request)
     {
         Movie entity = _mapper.Map<Movie>(request);
@@ -37,7 +40,12 @@ public class MovieService : IMovieService
         return entity.Id;
     }
 
-    // Update movie by id
+    /// <summary>
+    /// Update movie by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="request"></param>
+    /// <returns></returns>
     public async Task UpdateById(int id, MovieUpdateRequest request)
     {
         
@@ -56,7 +64,10 @@ public class MovieService : IMovieService
             throw new BusinessException("Movie update error!");
     }
 
-    // Delete movie by id
+    /// <summary>
+    /// Delete movie by id</summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public async Task DeleteById(int id)
     {
         var entity = await _movieRepository.FindAsync(x => x.Id == id);
@@ -72,7 +83,11 @@ public class MovieService : IMovieService
             throw new BusinessException("Movie delete error!");
     }
 
-    // Get movie by id
+    /// <summary>
+    /// Get movie by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public async Task<MovieResponse> GetById(int id)
     {
         var entity = await _movieRepository.GetWithDetailById(id);
@@ -83,7 +98,10 @@ public class MovieService : IMovieService
         return _mapper.Map<MovieResponse>(entity);
     }
 
-    // Get movies
+    /// <summary>
+    /// Get movies
+    /// </summary>
+    /// <returns></returns>
     public async Task<List<MovieResponse>> GetAll()
     {
         var entity = await _movieRepository.GetAllMovies();

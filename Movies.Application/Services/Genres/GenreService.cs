@@ -17,7 +17,10 @@ public class GenreService : IGenreService
         _mapper = mapper;
     }
 
-    // Get genres with name and id
+    /// <summary>
+    /// Get genres with name and id
+    /// </summary>
+    /// <returns></returns>
     public async Task<List<GenreResponse>> GetGenres()
     {
         var entities = await _genreRepository.Query().ToListAsync();
