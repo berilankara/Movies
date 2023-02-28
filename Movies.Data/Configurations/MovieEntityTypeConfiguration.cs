@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Movies.Data.Seeders;
 using Movies.Domain.Entities;
 
 namespace Movies.Data.Configurations;
@@ -32,6 +33,12 @@ public class MovieEntityTypeConfiguration : IEntityTypeConfiguration<Movie>
             .HasForeignKey(x => x.MovieId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        #endregion
+        
+        #region Seeder Configuration
+        
+        builder.RegisterSeeder();
+        
         #endregion
     }
 }

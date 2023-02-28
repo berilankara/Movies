@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Movies.Data.Seeders;
 using Movies.Domain.Entities;
 
 namespace Movies.Data.Configurations;
@@ -28,6 +29,12 @@ public class GenreEntityTypeConfiguration : IEntityTypeConfiguration<Genre>
         builder.HasMany(x => x.MovieGenres)
             .WithOne(x => x.Genre)
             .HasForeignKey(x => x.GenreId);
+        
+        #endregion
+        
+        #region Seeder Configuration
+        
+        builder.RegisterSeeder();
         
         #endregion
     }

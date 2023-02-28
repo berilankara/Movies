@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Movies.Data.Seeders;
 using Movies.Domain.Entities;
 
 namespace Movies.Data.Configurations;
@@ -21,6 +22,12 @@ public class MovieGenreTypeConfiguration : IEntityTypeConfiguration<MovieGenre>
         #endregion
 
         #region Relation Configuration
+        
+        #endregion
+        
+        #region Seeder Configuration
+        
+        builder.RegisterSeeder();
         
         #endregion
     }
